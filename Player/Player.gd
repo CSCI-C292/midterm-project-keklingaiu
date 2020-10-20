@@ -1,4 +1,8 @@
-extends KinematicBody2D
+extends Node2D
+
+onready var max_length = 50
+onready var max_divergence = 15
+onready var timeout = false;
 
 
 func _ready():
@@ -12,8 +16,21 @@ func _process(delta):
 	
 	
 func move_to_mouse():
-	if Input.is_action_pressed("Click"):
-		position = get_global_mouse_position()
+	if (Input.is_action_pressed("Click") && (timeout == false)):
+		timeout = true
+		get_child(0).start()
+		var mouse_position = Vector2(get_global_mouse_position().x, get_global_mouse_position().y)
+		if(position.x + max_divergence < mouse_position.x):
+			position = Vector2(position.x + max_length, position.y)
+		if(position.y + max_divergence < mouse_position.y):
+			position = Vector2(position.x, position.y + max_length)
+		if(position.x - max_divergence > mouse_position.x):
+			position = Vector2(position.x - max_length, position.y)
+		if(position.y - max_divergence > mouse_position.y):
+			position = Vector2(position.x, position.y - max_length)
 
 
-func _on_Damage_body_entered(body):	get_tree().reload_current_scene()
+
+func _on_Timer_timeout():
+	timeout = false;
+		
