@@ -4,7 +4,7 @@ extends Node2D
 export var speed = Vector2(3,0)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	position -= speed
 
 	if position.y > get_viewport().size.x + 100:

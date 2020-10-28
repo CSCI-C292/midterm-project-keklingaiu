@@ -3,7 +3,7 @@ extends Node2D
 onready var Enemy3 = load("res://Enemy/Enemy3.tscn")
 
 
-export var prob = 0.8
+export var prob = 0.6
 
 onready var height = get_viewport().size.y
 onready var width = get_viewport().size.x

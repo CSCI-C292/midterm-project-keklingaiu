@@ -9,7 +9,7 @@ func _ready():
 	move_to_mouse()
 
 
-func _process(delta):
+func _process(_delta):
 	look_at(get_global_mouse_position())
 	if position != get_global_mouse_position():
 		move_to_mouse()
