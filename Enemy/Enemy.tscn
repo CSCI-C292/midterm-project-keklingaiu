@@ -1,13 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Assets/fishTile_079.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 59.8019
-
 [node name="Enemy" type="Node2D"]
-position = Vector2( 1047.93, 347.189 )
+position = Vector2( 1046.93, 346.939 )
 scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -20,6 +17,6 @@ flip_h = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( -39.47, -45.317, -1.75757, -38.8352, 15.3308, -26.4608, 17.688, -15.265, 24.1699, -15.265, 38.9009, -22.3361, 57.168, 1.23413, 38.9009, 30.1078, 22.4019, 21.8582, 14.7415, 26.5721, 15.9199, 37.7681, -7.06104, 45.4283, -32.3987, 47.1962, -33.5771, 37.7681, -45.9519, 36.5895, -58.3262, 11.2516, -54.7905, -17.0327, -40.0591, -29.9965 )
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

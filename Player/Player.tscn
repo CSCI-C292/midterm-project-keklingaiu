@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/submarine.png" type="Texture" id=2]
+
+[node name="Player" type="Node2D"]
+position = Vector2( 513.703, 540 )
+rotation = -1.5708
+scale = Vector2( 0.8, 0.8 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = -1.5708
+scale = Vector2( 1.4, 1 )
+texture = ExtResource( 2 )
+
+[node name="Player" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+polygon = PoolVector2Array( 46.6718, 0.962341, 22.8068, 21.2915, -39.065, 20.8494, -49.6716, 2.72974, -49.6716, -1.6897, -39.0649, -17.1575, 21.4811, -18.0412 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

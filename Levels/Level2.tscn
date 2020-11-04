@@ -1,11 +1,9 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Assets/treasure_chest.png" type="Texture" id=1]
 [ext_resource path="res://Assets/barrier/magicbarrier023.png" type="Texture" id=2]
-[ext_resource path="res://Player/Player.gd" type="Script" id=3]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/Level2.gd" type="Script" id=4]
-[ext_resource path="res://Assets/submarine.png" type="Texture" id=5]
-[ext_resource path="res://Assets/brushwalker437.png" type="Texture" id=6]
 [ext_resource path="res://Enemy/Enemies.gd" type="Script" id=7]
 [ext_resource path="res://Assets/barrier/magicbarrier005.png" type="Texture" id=8]
 [ext_resource path="res://Assets/barrier/magicbarrier001.png" type="Texture" id=9]
@@ -79,54 +77,24 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 22.5726
-height = 54.769
-
 [node name="Game" type="Node2D"]
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 512.299, 299.814 )
-scale = Vector2( 7.99968, 4.68512 )
-frames = SubResource( 1 )
-frame = 60
-speed_scale = 3.0
-playing = true
-
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-position = Vector2( 513.006, 299.813 )
-scale = Vector2( 1.996, 1.16849 )
-texture = ExtResource( 6 )
-
-[node name="Player" type="Node2D" parent="."]
-position = Vector2( 513.703, 511.469 )
-rotation = -1.5708
-scale = Vector2( 0.8, 0.8 )
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Timer" type="Timer" parent="Player"]
-wait_time = 0.3
-
-[node name="Sprite" type="Sprite" parent="Player"]
-rotation = -1.5708
-scale = Vector2( 1.4, 1 )
-texture = ExtResource( 5 )
-
-[node name="Player" type="Area2D" parent="Player"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Player"]
-rotation = 1.5708
-shape = SubResource( 2 )
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource( 7 )
 
 [node name="Timer" type="Timer" parent="Enemies"]
 autostart = true
+
+[node name="Player2" parent="." instance=ExtResource( 3 )]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 1, 1, 0.403922 )
+position = Vector2( 512.299, 299.814 )
+scale = Vector2( 7.99968, 4.68512 )
+frames = SubResource( 1 )
+frame = 45
+speed_scale = 3.0
+playing = true
 
 [node name="Level" type="Area2D" parent="."]
 position = Vector2( 500, 50 )
@@ -138,6 +106,5 @@ texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level"]
 polygon = PoolVector2Array( 14.5, -12.5, 17.5, -10.1, 17.5, 17.5, -17.5, 17.5, -17.5, -9.5, -14.5, -12.3, -14.5, -14.5, 14.5, -14.5 )
-[connection signal="timeout" from="Player/Timer" to="Player" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Enemies/Timer" to="Enemies" method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Level" to="Level" method="_on_Level_area_entered"]
